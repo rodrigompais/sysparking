@@ -1,15 +1,15 @@
 <div class="row">
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>Nome</label>
-        <input type="text" name="name" class="form-control" autofocus>
+        <input type="text" name="name" class="form-control" value="{{ $user->name ?? old('name') }}" autofocus>
     </div>
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>Telefone</label>
-        <input type="text" maxlength="12" name="telephone" class="form-control">
+        <input type="text" maxlength="12" name="telephone" value="{{ $user->telephone ?? old('telephone') }}" class="form-control">
     </div>
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>Celular</label>
-        <input type="text" maxlength="12" name="cellphone" class="form-control">
+        <input type="text" maxlength="12" name="cellphone" value="{{ $user->cellphone ?? old('cellphone') }}" class="form-control">
     </div>
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>Perfil</label>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>E-mail</label>
-        <input type="email" name="email" class="form-control">
+        <input type="email" name="email" value="{{ $user->email ?? old('email') }}" class="form-control">
     </div>
     <div class="form-group col-lg-4 col-md-4 col-sm-12">
         <label>Senha</label>

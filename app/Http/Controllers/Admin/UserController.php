@@ -64,7 +64,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('admin.usuarios.index')
-            ->withSuccessMessage('Cadastrado Realizado com Sucesso');
+            ->with('success','User updated successfully');
         
             /* $this->dispatchBrowserEvent('swal', [
             'title' => 'Sucesso!',
@@ -90,9 +90,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        $user = User::where('uuid', $uuid)->first();
+        $roles = Role::pluck('name','id')->all();
+        $userRole = $user->roles->pluck('name','id')->all();
+
+        //dd($roles, $userRole, $user);
+
+        return view('admin.usuarios.edit', compact('user','roles','userRole'));
     }
 
     /**
@@ -102,7 +108,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
         //
     }
