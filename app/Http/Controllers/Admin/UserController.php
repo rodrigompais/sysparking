@@ -94,9 +94,9 @@ class UserController extends Controller
     {
         $user = User::where('uuid', $uuid)->first();
         $roles = Role::pluck('name','id')->all();
-        $userRole = $user->roles->pluck('name','id')->all();
+        $userRole = $user->roles->pluck('id')->all();
 
-        //dd($roles, $userRole, $user);
+        //dd($roles, $userRole);
 
         return view('admin.usuarios.edit', compact('user','roles','userRole'));
     }
@@ -105,12 +105,36 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $id, $uuid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required|min:3|max:250',
+            'cellphone' => 'required|min:10',
+            'telephone' => 'required|min:10',
+            /* 'password' => 'same:confirm-password', */
+            /* 'email'     => 'required|email|unique:users,email', */
+            'email'     => 'required|email|unique:users,email,'.$id,
+            'roles'     => 'required'
+        ]);
+
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('admin.usuarios.index')
+                        ->with('success', 'Registro atualizado com Sucesso!');
     }
 
     /**

@@ -16,8 +16,11 @@
         <select class="form-control text-center" name="roles" id="roles">
             <option value="Selecione" disabled="">Selecione</option>
             @foreach ($roles as $id => $name)
-                <option value="{{ $id }}">
-                    {{ $name }}
+                <option value="{{ $id }}"
+                    @if (isset($roles) && $userRole[0] == $id || old('roles') == $id)
+                        selected
+                    @endif 
+                    >{{ $name }}
                 </option>
             @endforeach
         </select>
@@ -41,3 +44,7 @@
         </button>
     </div>
 </div>
+
+                {{-- <option value="{{ $id }}">
+                    {{ $name }}
+                </option> --}}

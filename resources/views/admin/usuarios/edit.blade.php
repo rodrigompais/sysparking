@@ -5,12 +5,12 @@
             <div class="widget-content-area br-4">
                 <div class="widget-one">
                     @include('common.messages')
-                    {{-- <form action="{{ route('admin.usuarios.update', $user->uuid) }}" method="POST">
+                    <form action="{{ route('admin.usuarios.update', $user->uuid) }}" method="POST">
                         @csrf
-                        @method('PUT') --}}
+                        @method('PUT')
                         
                         @include('admin.usuarios._partials.form')
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
