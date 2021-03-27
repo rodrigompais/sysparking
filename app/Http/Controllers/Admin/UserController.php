@@ -26,7 +26,7 @@ class UserController extends Controller
         return view('admin.usuarios.index', compact('info'));
     }
 
-    /**
+    /** 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
