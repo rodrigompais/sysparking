@@ -15,7 +15,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     public $pagination = 20;
-    /**
+    /*
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
