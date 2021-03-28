@@ -54,8 +54,8 @@ class PermissaoController extends Component
         $this->perfilTitle = 'Criar';
         $this->permissaoTitle = 'Criar';
         $this->userSelected = '';
-        $this->perfilSelected = '';
-        $this->permissaoSelected = '';
+        $this->PerfilSelected = '';
+        $this->PermissaoSelected = '';
     }
 
     public function CriarPerfil($perfilName, $perfilId)

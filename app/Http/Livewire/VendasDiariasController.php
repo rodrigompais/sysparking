@@ -12,7 +12,7 @@ class VendasDiariasController extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     
-     public $fech_ini, $fech_fin, $pagination = 10;
+     public $fech_ini, $fech_fin, $pagination = 50;
 
 
     public function render()

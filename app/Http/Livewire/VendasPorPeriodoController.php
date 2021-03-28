@@ -12,7 +12,7 @@ class VendasPorPeriodoController extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $fecha_ini, $fecha_fim;
+    public $fecha_ini, $fecha_fim, $pagination = 25;
 
     public function render()
     {
@@ -29,7 +29,7 @@ class VendasPorPeriodoController extends Component
                         ->leftjoin('users as u', 'u.id', 'sales.user_id')
                         ->select('sales.*', 't.amount as tarifa', 't.description as veiculo', 'u.name as usuario')
                         ->whereBetween('sales.created_at', [$fi, $ff] )
-                        ->paginate(10);
+                        ->paginate($this->pagination);
         
         $total = Venda::whereBetween('created_at',[$fi, $ff])->where('status', 'Fechado')->sum('total');
 

@@ -11,9 +11,10 @@ class PerfilController extends Component
     {
         $info = User::where('id', auth()->user()->id)->first();
         $info->all();
-        //dd($info);
         return view('livewire.perfil.component',[
             'info' => $info
         ]);
     }
+
+    
 }

@@ -44,7 +44,3 @@
         </button>
     </div>
 </div>
-
-                {{-- <option value="{{ $id }}">
-                    {{ $name }}
-                </option> --}}

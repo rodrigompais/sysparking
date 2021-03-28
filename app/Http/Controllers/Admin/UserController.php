@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB as FacadesDB;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 use Ramsey\Uuid\Uuid;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -57,20 +57,14 @@ class UserController extends Controller
         $input = $request->all();
         //dd($input);
         $input['uuid'] = Uuid::uuid4();
-        $input['password'] = Hash::make($input['password']);
+        $input['password'] = FacadesHash::make($input['password']);
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
         return redirect()
             ->route('admin.usuarios.index')
-            ->with('success','User updated successfully');
-        
-            /* $this->dispatchBrowserEvent('swal', [
-            'title' => 'Sucesso!',
-            'text' => 'Registro criado com sucesso!',
-            'icon' => 'success'
-        ]); */
+            ->with('success', 'User updated successfully');
     }
 
     /**
@@ -90,15 +84,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($uuid)
+    public function edit($id)
     {
-        $user = User::where('uuid', $uuid)->first();
-        $roles = Role::pluck('name','id')->all();
+        $user = User::where('id', $id)->first();
+        $roles = Role::pluck('name', 'id')->all();
         $userRole = $user->roles->pluck('id')->all();
 
         //dd($roles, $userRole);
 
-        return view('admin.usuarios.edit', compact('user','roles','userRole'));
+        return view('admin.usuarios.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -114,22 +108,21 @@ class UserController extends Controller
             'name'      => 'required|min:3|max:250',
             'cellphone' => 'required|min:10',
             'telephone' => 'required|min:10',
-            /* 'password' => 'same:confirm-password', */
-            /* 'email'     => 'required|email|unique:users,email', */
-            'email'     => 'required|email|unique:users,email,'.$id,
+            'email'     => 'required|email',
             'roles'     => 'required'
         ]);
 
         $input = $request->all();
-        if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
+
+        if (!empty($input['password'])) {
+            $input['password'] = FacadesHash::make($input['password']);
         }else{
             $input = Arr::except($input,array('password'));
-        }
+        }       
 
         $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        FacadesDB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
 

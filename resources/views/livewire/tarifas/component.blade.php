@@ -44,7 +44,7 @@
                                 <th>Descrição</th>
                                 <th>Tempo</th>
                                 <th>Valor</th>
-                                <th>Hierarquia</th>
+                                {{-- <th>Hierarquia</th> --}}
                                 <th>Tipo</th>
                                 <th style="width: 100px" class="text-center">Ações</th>
                             </tr>
@@ -56,8 +56,8 @@
                                     <td>{{ $r->description }}</td>
                                     <td>{{ $r->time }}</td>
                                     {{-- <td>{{ $r->amount }}</td> --}}
-                                    <td class="text-center">R$ {{ number_format($r->amount, 2,',','') }}</td>
-                                    <td>{{ $r->hierarchy }}</td>
+                                    <td {{-- class="text-center" --}}>R$ {{ number_format($r->amount, 2,',','') }}</td>
+                                    {{-- <td>{{ $r->hierarchy }}</td> --}}
                                     <td>{{ $r->type }}</td>
                                     <td class="text-center">
                                         <ul class="table-controls">

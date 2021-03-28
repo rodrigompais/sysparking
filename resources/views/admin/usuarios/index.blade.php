@@ -34,7 +34,6 @@
                             <tbody>
                                 @foreach ($info as $key => $r)
                                     <tr>
-
                                         <td style="width: 250px">{{ $r->name }}</td>
                                         <td>{{ $r->telephone }}</td>
                                         <td>{{ $r->cellphone }}</td>
@@ -53,7 +52,7 @@
                                         <td class="text-center">
                                             <ul class="table-controls">
                                                 <li>
-                                                    <a href="{{ route('admin.usuarios.edit', $r->uuid) }}"
+                                                    <a href="{{ route('admin.usuarios.edit', $r->id) }}"
                                                         data-toggle="tooltip" data-placement="top" title="Editar"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -65,12 +64,12 @@
                                                         </svg></a>
                                                 </li>
                                                 <li>
-                                                    <form action="{{ route('admin.usuarios.destroy', $r->uuid) }}"
+                                                    <form action="{{ route('admin.usuarios.destroy', $r->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a href="javascript:void(0);"
-                                                            onclick="Confirm('{{ $r->uuid }}')"
+                                                            onclick="Confirm('{{ $r->id }}')"
                                                             class="text-danger"><svg xmlns="http://www.w3.org/2000/svg"
                                                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
@@ -101,9 +100,8 @@
             </div>
         </div>
     </div>
-    
+
     <script type="text/javascript">
-        
         window.addEventListener('swal', function(e) {
             Swal.fire(e.detail);
         });
@@ -128,12 +126,11 @@
                         'Excluido!',
                         'Registro excluido com sucesso!',
                         'success'
-                    )  */                   
+                    )  */
                 }
             })
         }
-        document.addEventListener('DOMContentLoaded', function() {
-        });
+        document.addEventListener('DOMContentLoaded', function() {});
 
     </script>
 @endsection
