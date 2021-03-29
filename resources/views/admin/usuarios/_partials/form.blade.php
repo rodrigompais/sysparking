@@ -17,7 +17,7 @@
             <option value="Selecione" disabled="">Selecione</option>
             @foreach ($roles as $id => $name)
                 <option value="{{ $id }}"
-                    @if (isset($roles) && $userRole[0] == $id || old('roles') == $id)
+                    @if (isset($userRole) && $userRole[0] == $id || old('roles') == $id)
                         selected
                     @endif 
                     >{{ $name }}

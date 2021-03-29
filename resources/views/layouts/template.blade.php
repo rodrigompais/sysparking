@@ -599,11 +599,11 @@
         @endif --}}
     <script>
         window.livewire.on('msg-ok', msgOK => {
-            toastr.success(msgOK, "info")
+            toastr.success(msgOK)
         })
 
         window.livewire.on('getin-ok', msgOK => {
-            toastr.success(msgOK, "info")
+            toastr.success(msgOK)
         })
 
         window.livewire.on('msg-error', msgError => {
@@ -611,7 +611,7 @@
         })
 
         window.livewire.on('getout-ok', msgInfo => {
-            toastr.success(msgInfo, "info")
+            toastr.success(msgInfo)
         })
 
         window.livewire.on('getout-error', msgError => {

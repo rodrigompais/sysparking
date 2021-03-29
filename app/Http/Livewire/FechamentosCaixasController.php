@@ -30,7 +30,7 @@ class FechamentosCaixasController extends Component
 
     public function render()
     {
-        $users = User::where('type', '<>', 'Cliente')->select('name','id')->get();
+        $users = User::where('type', '=', '1')->select('name','id')->get();
 
         return view('livewire.fechamentoscaixas.component',[
             'users' => $users

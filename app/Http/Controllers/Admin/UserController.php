@@ -34,6 +34,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'id')->all();
+
         return view('admin.usuarios.create', compact('roles'));
     }
 
@@ -57,6 +58,7 @@ class UserController extends Controller
         $input = $request->all();
         //dd($input);
         $input['uuid'] = Uuid::uuid4();
+        $input['type'] = $input['roles'];
         $input['password'] = FacadesHash::make($input['password']);
 
         $user = User::create($input);
@@ -89,8 +91,6 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
         $roles = Role::pluck('name', 'id')->all();
         $userRole = $user->roles->pluck('id')->all();
-
-        //dd($roles, $userRole);
 
         return view('admin.usuarios.edit', compact('user', 'roles', 'userRole'));
     }

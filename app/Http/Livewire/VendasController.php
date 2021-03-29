@@ -50,37 +50,20 @@ class VendasController extends Component
             ->get();
 
         //buscar clientes    
-        if(strlen($this->buscarCliente) > 0)
-        {
-            $clientes = CustomerCarrier::leftjoin('users as u', 'u.id','customercarriers.user_id')
-            ->leftjoin('carriers as v', 'v.id', 'customercarriers.carrier_id')
-            ->select('v.id as carrier_id','v.plate','v.brand','v.color','v.nota','v.model','u.id as cliente_id','name','telephone','cellphone','email')
-            ->where('name', 'like', '%'. $this->buscarCliente .'%')
-            ->get();      
-        } 
-
-        else {
-        $clientes = User::where('type','Cliente')
-            ->select('id','name','telephone','cellphone','email', DB::RAW("'' as carriers "))
-            ->take(1)->get();
-        }
-
-        /* if (strlen($this->buscarCliente) > 0) {
-            $clientes = CustomerCarrier::join('users as u', 'u.id', 'customercarriers.user_id')
-                ->join('carriers as v', 'v.id', 'customercarriers.carrier_id')
-                ->select('v.id as carrier_id', 'v.plate', 'v.brand', 'v.color', 'v.nota', 'v.model', 'u.id as user_id', 'name', 'telephone', 'cellphone', 'email')
+        if (strlen($this->buscarCliente) > 0) {
+            $clientes = CustomerCarrier::leftjoin('users as u', 'u.id', 'customercarriers.user_id')
+                ->leftjoin('carriers as v', 'v.id', 'customercarriers.carrier_id')
+                ->select('v.id as carrier_id', 'v.plate', 'v.brand', 'v.color', 'v.nota', 'v.model', 'u.id as cliente_id', 'name', 'telephone', 'cellphone', 'email')
                 ->where('name', 'like', '%' . $this->buscarCliente . '%')
                 ->get();
-            //dd($clientes);
         } else {
-            $clientes = User::where('type', 'Cliente')->select('id', 'name', 'telephone', 'cellphone', 'email', DB::RAW("'' as carriers"))
+            $clientes = User::where('type', '<>', '1')
+                ->select('id', 'name', 'telephone', 'cellphone', 'email', DB::RAW("'' as carriers "))
                 ->take(1)->get();
-        } */
+        }
+        //Permission::where('name', $permissaoName)
 
         $this->clientes = $clientes;
-        /* foreach($clientes as $c){
-            print_r($c->name);
-        } */
 
         foreach ($vagas as $g) {
             $tarifa = Tarifa::where('type_id', $g->type_id)->select('id')->first();
@@ -172,11 +155,6 @@ class VendasController extends Component
             $this->emit('msg-ok', 'Essa vaga esta ocupada!');
             return;
         }
-
-        /* if ($tarifa_id == '') {
-            $this->emit('msg-ok', 'Não há tarifa cadastrada para essa vaga!');
-            return;
-        } */
 
         $vaga = Vaga::where('id', $vacancy_id)->first();
         $vaga->status =  'Ocupado';
@@ -291,7 +269,7 @@ class VendasController extends Component
                     'color' => $this->color,
                     'nota' => $this->nota
                 ]);
-               // dd($carrier);
+                // dd($carrier);
             }
 
             if ($this->clienteSelected == null) {
@@ -388,7 +366,7 @@ class VendasController extends Component
         if ($ticket) {
             $this->bar_code = '';
             $this->section = 1;
-            $this->emit('getout-ok', 'Saida registra com sucesso!');
+            $this->emit('getout-ok', 'Saida registrada com sucesso!');
         } else {
             $this->bar_code = '';
             $this->section = 1;
