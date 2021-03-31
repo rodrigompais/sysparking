@@ -62,10 +62,10 @@
                                                                     class="badge-chip badge-danger mt-3 mb-3 ml-2 btncajon bs-popover">
                                                             @endif                                                                                                      
                                                             @if ($v->image != '')
-                                                                <img src="images/{{ $v->image }}" height="96" width="96">
+                                                                <img src="images/tipos/{{ $v->image }}" height="96" width="96">
                                                                 <span class="text">{{ $v->description }}</span>
                                                             @else
-                                                                <img src="images/veiculo_sem_img.png" height="96" width="96">
+                                                                <img src="images/tipos/veiculo_sem_img.png" height="96" width="96">
                                                                 <span class="text">{{ $v->description }}</span>
                                                             @endif                                                     
                                                     </div>

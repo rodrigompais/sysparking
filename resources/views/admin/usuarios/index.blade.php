@@ -48,7 +48,7 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td style="width: 350px">{{ $r->email }}</td>
+                                        <td style="width: 350px">{{ $r->email }}</td> 
                                         <td class="text-center">
                                             <ul class="table-controls">
                                                 <li>

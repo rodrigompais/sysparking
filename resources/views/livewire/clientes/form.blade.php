@@ -6,7 +6,7 @@
                     {{-- @include('common.messages') --}}
 
                     <div class="col-xl-12">
-                        <h4><b> Dados da Empresa </b></h4>
+                        <h4><b> Dados do Cliente </b></h4>
                     </div>
                     <div class="form-group col-md-6 mb-4">
                         <label>Nome</label>

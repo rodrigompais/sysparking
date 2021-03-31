@@ -25,7 +25,7 @@
                         <a href="{{ route('admin.usuarios.index') }}" class="btn btn-outline-danger btn-rounded mr-1" type="submit">
                             <i class="mbri-left"></i> Voltar
                         </a>
-                        <a href="{{ route('admin.usuarios.update', $info->id) }}" class="btn btn-outline-success btn-rounded mr-1" type="submit">
+                        <a href="{{ route('admin.usuarios.edit', $info->id) }}" class="btn btn-outline-success btn-rounded mr-1" type="submit">
                             <i class="mbri-left"></i> Editar
                         </a>
                     </div>

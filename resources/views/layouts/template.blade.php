@@ -470,10 +470,10 @@
                         <ul class="collapse submenu list-unstyled" id="users" data-parent="#topAccordion">
 
                             <li>
-                                <a href="{{ url('clientes') }}"> Clientes </a>
+                                <a href="{{ url('cliente') }}"> Clientes </a>
                             </li>
                             <li>
-                                <a href="{{ url('vagas') }}"> Vagas </a>
+                                <a href="{{ url('vagas') }}"> Tipo de Vagas </a>
                             </li>
                             <li>
                                 <a href="{{ url('tipos') }}"> Tipo de Veiculos </a>

@@ -6,8 +6,10 @@ use App\Models\Tarifa;
 use Livewire\Component;
 use Ramsey\Uuid\Uuid;
 use App\Models\Tipo;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 
 class TiposController extends Component
 {
@@ -69,11 +71,12 @@ class TiposController extends Component
 
     public function StoreOrUpdate()
     {
-        $this->validate(
-            [
-                'description' => 'required|min:3'
-            ]
-        );
+        $this->validate([
+            'description'   => 'required|min:3',
+            /* 'image'         => 'required|file', */
+        ]);
+
+        //$this->validate($rules);
 
         if ($this->selected_id > 0) {
             $existe = Tipo::where('description', $this->description)
@@ -105,7 +108,7 @@ class TiposController extends Component
             if ($this->image) {
                 $image = $this->image;
                 $fileName = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1]; //Para criar o nome do arquivo
-                $moved = Image::make($image)->save('images/' . $fileName);
+                $moved = Image::make($image)->save('images/tipos/' . $fileName);
 
                 if ($moved) {
                     $record->image = $fileName;
@@ -113,14 +116,18 @@ class TiposController extends Component
                 }
             }
         } else {
+
             $record = Tipo::find($this->selected_id);
             $record->update([
                 'description' => $this->description
             ]);
+            File::delete([
+                public_path('images/tipos/' . $record->image)
+            ]);
             if ($this->image) {
                 $image = $this->image;
-                $fileName = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-                $moved = Image::make($image)->save('images/' . $fileName);
+                $fileName = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1]; //Para criar o nome do arquivo          
+                $moved = Image::make($image)->save('images/tipos/' . $fileName);
 
                 if ($moved) {
                     $record->image = $fileName;
@@ -128,16 +135,15 @@ class TiposController extends Component
                 }
             }
         }
-
         if ($this->selected_id)
             $this->dispatchBrowserEvent('swal', [
-                'title'=> 'Sucesso!',
+                'title' => 'Sucesso!',
                 'text' => 'Registro atualizado com sucesso!',
                 'icon' => 'info'
             ]);
         else
             $this->dispatchBrowserEvent('swal', [
-                'title'=> 'Sucesso!',
+                'title' => 'Sucesso!',
                 'text' => 'Registro criado com sucesso!',
                 'icon' => 'success'
             ]);
@@ -158,6 +164,10 @@ class TiposController extends Component
                 $this->emit('msg-error', "No es posible eliminar el registro porque existen tarifas asociadas a este tipo");
             } else {
                 $tipo = Tipo::where('id', $id);
+                //dd($tipo);
+                /* File::delete([
+                    public_path('images/tipos/' . $tipo->image)
+                ]); */
                 $tipo->delete();
                 $this->emit('msg-ok', 'Registro Excluido com Sucesso!');
                 $this->resetInput();
