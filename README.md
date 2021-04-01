@@ -1,6 +1,6 @@
 ## Sistema de Estacionamento - MYSYSPARKING
 
-Sistema criado através do cursa realizado na UDEMY - ## Curso de Laravel y Livewire - Crea un Sistema de Parking.
+Sistema criado através do cursa realizado na UDEMY - Curso de Laravel y Livewire - Crea un Sistema de Parking.
 
 - Funcionalidades:
 - Cadastro de Cliente
