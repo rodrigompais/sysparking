@@ -34,7 +34,7 @@ Você pode copiar o arquivo .env.example e criar um novo chamado .env, nesse arq
 cp .env.example .env
 Abra o arquivo .env e configure-o de acordo com as informações do seu servidor.
 
-Por fim execute o comando abaixo parar criar uma chave para a aplicação:
+Por fim execute o comando abaixo.
 
 - php artisan key:generate
 - php artisan migrate
