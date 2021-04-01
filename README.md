@@ -20,7 +20,7 @@ Sistema criado através do curso realizado na UDEMY - Curso de Laravel y Livewir
 - Relatório de Venda por Datas
 - Relatório de Cliente Mensalistas
 
-(*) - Itens que serão realziados ajustes.
+(*) - Itens que serão realizados ajustes.
 
 ## Instalação
 
