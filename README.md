@@ -36,20 +36,20 @@ Abra o arquivo .env e configure-o de acordo com as informações do seu servidor
 
 Por fim execute o comando abaixo parar criar uma chave para a aplicação:
 
-php artisan key:generate
-php artisan migrate
-php artisan db:seed
-php artisan serve
+-php artisan key:generate
+-php artisan migrate
+-php artisan db:seed
+-php artisan serve
 
 ## Usuários Default
 
-Administrador
-Login: admin@mysysparking.com.br
-Senha: password
+-Administrador
+-Login: admin@mysysparking.com.br
+-Senha: password
 
-Demo
-Login: demo@mysysparking.com.br
-Senha: password
+-Demo
+-Login: demo@mysysparking.com.br
+-Senha: password
 
 
 
