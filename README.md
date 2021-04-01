@@ -1,8 +1,8 @@
 ## Sistema de Estacionamento - MYSYSPARKING
 
-Sistema criado através do cursa realizado na UDEMY - Curso de Laravel y Livewire - Crea un Sistema de Parking.
+Sistema criado através do curso realizado na UDEMY - Curso de Laravel y Livewire - Crea un Sistema de Parking.
 
-- Funcionalidades:
+## Funcionalidades:
 - Cadastro de Cliente
 - Cadastro de Veículos
 - Cadastro de Fabricantes
@@ -21,4 +21,36 @@ Sistema criado através do cursa realizado na UDEMY - Curso de Laravel y Livewir
 - Relatório de Cliente Mensalistas
 
 (*) - Itens que serão realziados ajustes.
+
+## Instalação
+
+Clone o repositório e manualmente execute o 'composer':
+git clone https://github.com/rodrigompais/sysparking.git
+
+Os comandos acima baixam o código do sistema e instalam suas dependências. Agora é preciso configurar o sistema.
+
+Você pode copiar o arquivo .env.example e criar um novo chamado .env, nesse arquivo ficarão as configurações do banco de dados e demais configurações do sistema.
+
+cp .env.example .env
+Abra o arquivo .env e configure-o de acordo com as informações do seu servidor.
+
+Por fim execute o comando abaixo parar criar uma chave para a aplicação:
+
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan serve
+
+## Usuários Default
+
+Administrador
+Login: admin@mysysparking.com.br
+Senha: password
+
+Demo
+Login: demo@mysysparking.com.br
+Senha: password
+
+
+
 
