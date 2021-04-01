@@ -3,7 +3,7 @@
 Sistema criado através do curso realizado na UDEMY - Curso de Laravel y Livewire - Crea un Sistema de Parking.
 
 ## Funcionalidades:
-- Cadastro de Cliente
+- Cadastro de Cliente - Em desenvolvimento.
 - Cadastro de Veículos
 - Cadastro de Fabricantes
 - Cadastro de Modelos
@@ -20,7 +20,7 @@ Sistema criado através do curso realizado na UDEMY - Curso de Laravel y Livewir
 - Relatório de Venda por Datas
 - Relatório de Cliente Mensalistas
 
-(*) - Itens que serão realizados ajustes.
+(*) - Itens em ajustes.
 
 ## Instalação
 
